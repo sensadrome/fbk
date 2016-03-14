@@ -1,0 +1,8 @@
+setenforce 0
+mkdir /tmp/ipfs-docker-staging
+chmod 777 /tmp/ipfs-docker-staging
+#chcon -Rvt svirt_sandbox_file_t /tmp/ipfs-docker-staging
+mkdir /tmp/ipfs-docker-data
+chmod 777 /tmp/ipfs-docker-data
+#chcon -Rvt svirt_sandbox_file_t /tmp/ipfs-docker-data
+docker run -d --name ipfs-node   -v /tmp/ipfs-docker-staging:/export -v /tmp/ipfs-docker-data:/data/ipfs   -p 8080:8080 -p 4001:4001 -p 127.0.0.1:5001:5001   jbenet/go-ipfs:latest
